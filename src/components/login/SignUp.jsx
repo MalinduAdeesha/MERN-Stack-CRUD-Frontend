@@ -19,11 +19,21 @@ const SignUp = () => {
       return;
     }
 
+    let body = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
     try {
-      // Make POST request to sign-up endpoint
-      await axios.post("/api/signup", { name, email, password });
-      alert("Sign up successful!");
-      // Optionally, redirect user to login page or do something else
+      await axios
+        .post("http://localhost:8000/admin/create", body)
+        .then((r) => {
+          alert("Sign up successful!");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (error) {
       alert("Error signing up. Please try again later.");
       console.error("Error signing up:", error);
@@ -34,7 +44,10 @@ const SignUp = () => {
     <div className="signup bg-blue-50">
       <div className="signup-container w-[25%] mt-[75px]  bg-white m-auto px-14 py-16 rounded-md shadow-xl">
         <h1 className="text-3xl font-semibold text-center ">Sign Up</h1>
-        <form className="flex flex-col login-signup-fields gap-7 mt-7" onSubmit={handleSignUp}>
+        <form
+          className="flex flex-col login-signup-fields gap-7 mt-7"
+          onSubmit={handleSignUp}
+        >
           <input
             className="h-[40px] w-[100%] pl-5 border-2 border-[#c9c9c9] outline-none text-[#5c5c5c] text-sm rounded-lg focus:border-purple-500"
             type="text"
@@ -60,6 +73,9 @@ const SignUp = () => {
             disabled={!accept}
             className="w-[100%] h-[50px] text-white bg-red-500 mt-7 border-none text-lg font-medium cursor-pointer rounded-xl disabled:bg-red-300 disabled:cursor-not-allowed active:bg-red-800"
             type="submit"
+            onClick={() => {
+              console.log(name, password, email);
+            }}
           >
             Continue
           </button>
