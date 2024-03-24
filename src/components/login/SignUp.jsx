@@ -83,7 +83,7 @@ const SignUp = () => {
         <p className="mt-5 loginSignup-login text-[#5c5c5c] text-sm font-light">
           Already have an account ?{" "}
           <span className="text-[red] font-semibold cursor-pointer hover:underline">
-            <Link to={"/login"}>Login here</Link>{" "}
+            <Link to={"/"}>Login here</Link>{" "}
           </span>
         </p>
         <div className="flex items-center gap-5 mt-6 loginSignup-agree text-[#5c5c5c]  font-medium">
